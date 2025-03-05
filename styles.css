@@ -7,11 +7,18 @@
 }
 
 /* 背景設計 */
-body {
+.main{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background: linear-gradient(to right, #4A90E2, #50E3C2);
+}
+
+.info{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     background: linear-gradient(to right, #4A90E2, #50E3C2);
 }
 
@@ -26,7 +33,28 @@ body {
     width: 320px;
 }
 
+.left-container {
+    margin-top: 100px;
+    margin-right: 100px;
+    margin-bottom: 100px;
+}
+
+.right-container {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
 /* 標題 */
+h1 {
+    text-align: center;
+    position: fixed;top: 0;
+    width: 100%;
+    padding: 15px;
+    background: #ccc;
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+
 h2 {
     margin-bottom: 20px;
     color: #333;
@@ -73,18 +101,57 @@ h2 {
 
 /* 連結樣式 */
 .register-link,
-.login-link {
+.login-link,
+.info-link {
     margin-top: 10px;
     font-size: 14px;
 }
 
 .register-link a,
-.login-link a {
+.login-link a,
+.info-link a {
     color: #4A90E2;
     text-decoration: none;
 }
 
 .register-link a:hover,
-.login-link a:hover {
+.login-link a:hover,
+.info-link a:hover {
     text-decoration: underline;
+}
+
+h1 a {
+    text-decoration: none;
+    color: white;
+    background: #357ABD;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+h1 a:hover {
+    background: #24568D;
+}
+
+/* 列表樣式 */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    font-size: 18px;
+    padding: 10px;
+    margin: 10px;
+    display: block;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 圖片樣式 */
+img {
+    padding: 5px;
+    background-color: #ccc;
+    border-radius: 7px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
