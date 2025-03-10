@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>購物平台首頁</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- 導覽列 -->
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-gray-700">購物平台</a>
+            <div>
+                <a href="#" class="text-gray-700 hover:text-blue-500 mx-2">首頁</a>
+                <a href="#" class="text-gray-700 hover:text-blue-500 mx-2">商品</a>
+                <a href="#" class="text-gray-700 hover:text-blue-500 mx-2">購物車</a>
+                <a href="login.html" class="text-gray-700 hover:text-blue-500 mx-2">登入</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 橫幅 -->
+    <header class="bg-blue-500 text-white text-center py-16">
+        <h1 class="text-4xl font-bold">歡迎來到購物平台</h1>
+        <p class="mt-2 text-lg">最優惠的價格，最豐富的商品</p>
+    </header>
+
+    <!-- 商品區域 -->
+    <section class="container mx-auto px-4 py-8">
+        <h2 class="text-2xl font-bold text-gray-700">熱門商品</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
+            <div class="bg-white p-4 shadow-md rounded-lg">
+                <img src="./img/items/chiikawa.jpg" alt="商品" class="w-full h-45 object-cover rounded-md">
+                <h3 class="mt-2 text-lg font-semibold">吉伊卡哇</h3>
+                <p class="text-gray-600">$99</p>
+                <button class="mt-2 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">加入購物車</button>
+            </div>
+            <div class="bg-white p-4 shadow-md rounded-lg">
+                <img src="./img/items/hachiware.jpg" alt="商品" class="w-full h-45 object-cover rounded-md">
+                <h3 class="mt-2 text-lg font-semibold">小八</h3>
+                <p class="text-gray-600">$999</p>
+                <button class="mt-2 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">加入購物車</button>
+            </div>
+            <div class="bg-white p-4 shadow-md rounded-lg">
+                <img src="./img/items/usagi.jpg" alt="商品" class="w-full h-45 object-cover rounded-md">
+                <h3 class="mt-2 text-lg font-semibold">烏薩奇</h3>
+                <p class="text-gray-600">$9999</p>
+                <button class="mt-2 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">加入購物車</button>
+            </div>
+            <div class="bg-white p-4 shadow-md rounded-lg">
+                <img src="./img/items/sisa.jpg" alt="商品" class="w-full h-45 object-cover rounded-md">
+                <h3 class="mt-2 text-lg font-semibold">獅薩</h3>
+                <p class="text-gray-600">$999</p>
+                <button class="mt-2 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">加入購物車</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer class="bg-gray-800 text-white text-center py-4 mt-8">
+        <p>&copy; 2025 購物平台. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
