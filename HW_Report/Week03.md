@@ -25,7 +25,7 @@
   ![login page screenshot](../HW_Materials/login_screenshot.jpg) </br>
 - 使用 html 實作簡單的 user register page </br>
   Register page : </br>
-  ![Register.html](../HW_Materials/register_css.png)
+  ![Register.html](../HW_Materials/register_css.png) </br>
   Register page screenshot </br>
   ![Register page screenshot](../HW_Materials/register_screenshot.jpg) </br>
 - 使用 css 美化並統一兩個 page 中各元件的 UI 樣式 </br>
