@@ -22,6 +22,7 @@ export default function Register() {
   };
 
   return (
+    <div className="w-screen h-screen flex items-center justify-center bg-gradient-to-r from-[#4A90E2] to-[#50E3C2]">
     <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold text-center text-gray-700">註冊</h2>
       <form className="mt-6" onSubmit={handleSubmit}>
@@ -29,7 +30,7 @@ export default function Register() {
           <label className="block text-sm font-medium text-gray-700">使用者名稱</label>
           <input
             type="text"
-            className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 mt-2 border bg-white text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="輸入使用者名稱"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -40,7 +41,7 @@ export default function Register() {
           <label className="block text-sm font-medium text-gray-700">Email</label>
           <input
             type="email"
-            className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 mt-2 border bg-white text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="輸入 Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -51,7 +52,7 @@ export default function Register() {
           <label className="block text-sm font-medium text-gray-700">密碼</label>
           <input
             type="password"
-            className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 mt-2 border bg-white text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="輸入密碼"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -62,7 +63,7 @@ export default function Register() {
           <label className="block text-sm font-medium text-gray-700">確認密碼</label>
           <input
             type="password"
-            className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 mt-2 border bg-white text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="再次輸入密碼"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -83,6 +84,7 @@ export default function Register() {
         已經有帳號？ <Link to="/login" className="text-blue-500 hover:underline">登入</Link>
       </p>
 
+    </div>
     </div>
   );
 }

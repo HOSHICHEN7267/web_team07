@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Footer from "../Footer";
 
 export default function Home() {
   const products = [
@@ -16,7 +17,7 @@ export default function Home() {
           <Link to="/" className="text-2xl font-bold text-gray-700">購物平台</Link>
           <div>
             <Link to="/" className="text-gray-700 hover:text-blue-500 mx-2">首頁</Link>
-            <Link to="/" className="text-gray-700 hover:text-blue-500 mx-2">商品</Link>
+            <Link to="/product" className="text-gray-700 hover:text-blue-500 mx-2">商品</Link>
             <Link to="/" className="text-gray-700 hover:text-blue-500 mx-2">購物車</Link>
             <Link to="/login" className="text-gray-700 hover:text-blue-500 mx-2">登入</Link>
           </div>
@@ -48,10 +49,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 頁尾 */}
-      <footer className="bg-gray-800 text-white text-center py-4 mt-8">
-        <p>&copy; 2025 購物平台. All Rights Reserved.</p>
-      </footer>
+      <Footer />
     </div>
   );
 }
