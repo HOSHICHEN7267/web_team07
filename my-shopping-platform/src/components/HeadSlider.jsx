@@ -52,15 +52,15 @@ const HeaderSlider = () => {
         {sliderData.map((slide, index) => (
           <div
             key={slide.id}
-            className="flex flex-col-reverse md:flex-row items-center justify-between bg-[#E6E9F2] py-8 md:px-14 px-5 mt-6 rounded-xl min-w-full"
+            className="flex flex-col-reverse md:flex-row items-center justify-between bg-[#E6E9F2] py-8 md:px-14 px-5 mt-6 rounded-xl min-w-full lg:gap-10"
           >
-            <div className="md:pl-8 mt-10 md:mt-0">
-              <p className="md:text-base text-orange-600 pb-1">{slide.offer}</p>
-              <h1 className="max-w-lg md:text-[40px] text-2xl font-semibold md:leading-[56px] leading-[40px]">
+            <div className="md:pl-8 mt-10 md:mt-0 text-center md:text-left">
+              <p className="md:text-base text-sm text-orange-600 pb-1">{slide.offer}</p>
+              <h1 className="max-w-lg text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold md:leading-[56px] leading-[40px]">
                 {slide.title}
               </h1>
-              <div className="flex items-center mt-4 md:mt-6">
-                <button className="md:px-10 px-7 md:py-2.5 py-2 bg-orange-600 rounded-full text-white font-medium">
+              <div className="flex items-center mt-4 md:mt-6 gap-4 justify-center md:justify-start">
+                <button className="sm:px-8 md:px-10 lg:px-12 sm:py-2 md:py-2.5 bg-orange-600 rounded-full text-white font-medium">
                   {slide.buttonText1}
                 </button>
                 <button className="group flex items-center gap-2 px-6 py-2.5 font-medium">
@@ -70,7 +70,7 @@ const HeaderSlider = () => {
             </div>
             <div className="flex items-center flex-1 justify-center">
               <img
-                className="md:w-72 w-48"
+                className="w-40 sm:w-56 md:w-72 lg:w-96"
                 src={slide.imgSrc}
                 alt={`Slide ${index + 1}`}
               />
@@ -84,7 +84,7 @@ const HeaderSlider = () => {
           <div
             key={index}
             onClick={() => handleSlideChange(index)}
-            className={`h-2 w-2 rounded-full cursor-pointer ${
+            className={`h-2 w-2 sm:h-2 sm:w-2 md:h-3 md:w-3 rounded-full cursor-pointer ${
               currentSlide === index ? "bg-orange-600" : "bg-gray-500/30"
             }`}
           ></div>
