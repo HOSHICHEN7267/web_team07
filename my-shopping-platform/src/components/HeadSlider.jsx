@@ -56,7 +56,7 @@ const HeaderSlider = () => {
           >
             <div className="md:pl-8 mt-10 md:mt-0 text-center md:text-left">
               <p className="md:text-base text-sm text-orange-600 pb-1">{slide.offer}</p>
-              <h1 className="max-w-lg text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold md:leading-[56px] leading-[40px]">
+              {/* <h1 className="max-w-lg text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold md:leading-[56px] leading-[40px]">
                 {slide.title}
               </h1>
               <div className="flex items-center mt-4 md:mt-6 gap-4 justify-center md:justify-start">
@@ -66,7 +66,7 @@ const HeaderSlider = () => {
                 <button className="group flex items-center gap-2 px-6 py-2.5 font-medium">
                   {slide.buttonText2}
                 </button>
-              </div>
+              </div> */}
             </div>
             <div className="flex items-center flex-1 justify-center">
               <img
