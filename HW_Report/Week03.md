@@ -20,17 +20,17 @@
 
 - 使用 html 實作簡單的 user login page </br>
   Login page code: </br>
-  ![login.html](../HW_Materials/login_css.png) </br>
+  ![login.html](../HW_Materials/week3/login_css.png) </br>
   Login page screenshot </br>
-  ![login page screenshot](../HW_Materials/login_screenshot.jpg) </br>
+  ![login page screenshot](../HW_Materials/week3/login_screenshot.jpg) </br>
 - 使用 html 實作簡單的 user register page </br>
   Register page : </br>
-  ![Register.html](../HW_Materials/register_css.png) </br>
+  ![Register.html](../HW_Materials/week3/register_css.png) </br>
   Register page screenshot </br>
-  ![Register page screenshot](../HW_Materials/register_screenshot.jpg) </br>
+  ![Register page screenshot](../HW_Materials/week3/register_screenshot.jpg) </br>
 - 使用 css 美化並統一兩個 page 中各元件的 UI 樣式 </br>
   css screenshot (節錄): </br>
-  ![css screenshot](../HW_Materials/css.png) </br>
+  ![css screenshot](../HW_Materials/week3/css.png) </br>
 
 ### 與當週上課的主題相關的額外程式技術
 
@@ -51,12 +51,12 @@
     | **適用專案** | 適合中大型專案或需快速開發的應用 | 適合小型專案或對樣式要求精細的應用 |
 - 我們試著在同樣的 html 框架下，使用 tailwind css 改寫原本的 login page 與 register page </br>
     Login page tailwind css 版 (code): </br>
-    ![login tailwind css html](../HW_Materials/login_tailwind_css.png) </br>
+    ![login tailwind css html](../HW_Materials/week3/login_tailwind_css.png) </br>
     Login page tailwind css 版: </br>
-    ![login tailwind css screenshot](../HW_Materials/login_tailwind_css_screenshot.png) </br>
+    ![login tailwind css screenshot](../HW_Materials/week3/login_tailwind_css_screenshot.png) </br>
 - 我們使用 html + tailwind css，直接實作出一個簡易購物平台 home page </br>
     Home page: </br>
-    ![login tailwind css html](../HW_Materials/home_page.png) </br>
+    ![login tailwind css html](../HW_Materials/week3/home_page.png) </br>
 
 ### 組員分工情況
 - 陳星佑 25% github configuration, home page 製作
