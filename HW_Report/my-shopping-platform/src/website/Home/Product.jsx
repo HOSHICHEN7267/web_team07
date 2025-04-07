@@ -1,14 +1,28 @@
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
+import { useEffect, useState, useContext} from "react"; 
+import { CartContext } from "../CartContext";
+
+
+// export default function Product() {
+//   const products = [
+//     { id: 1, name: "吉伊卡哇", price: 99, img: "/img/items/chiikawa.jpg" },
+//     { id: 2, name: "小八", price: 999, img: "/img/items/hachiware.jpg" },
+//     { id: 3, name: "烏薩奇", price: 9999, img: "/img/items/usagi.jpg" },
+//     { id: 4, name: "獅薩", price: 999, img: "/img/items/sisa.jpg" },
+//   ];
 
 export default function Product() {
-  const products = [
-    { id: 1, name: "吉伊卡哇", price: 99, img: "/img/items/chiikawa.jpg" },
-    { id: 2, name: "小八", price: 999, img: "/img/items/hachiware.jpg" },
-    { id: 3, name: "烏薩奇", price: 9999, img: "/img/items/usagi.jpg" },
-    { id: 4, name: "獅薩", price: 999, img: "/img/items/sisa.jpg" },
-  ];
+  const [products, setProducts] = useState([]);
+  const { addToCart } = useContext(CartContext);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/api/products/")
+      .then((res) => res.json())
+      .then((data) => setProducts(data))
+      .catch((err) => console.error("載入商品失敗", err));
+  }, []);
 
   return (
     <>
@@ -27,7 +41,7 @@ export default function Product() {
                 />
                 <h3 className="mt-2 text-lg font-semibold text-black">{product.name}</h3>
                 <p className="text-gray-600">${product.price}</p>
-                <button className="mt-2 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">加入購物車</button>
+                <button className="mt-2 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600" onClick={() => addToCart(product)} >加入購物車</button>
               </div>
             ))}
           </div>
