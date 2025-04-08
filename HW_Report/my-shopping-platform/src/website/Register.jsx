@@ -8,18 +8,49 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
 
+  //   if (password !== confirmPassword) {
+  //     setErrorMessage("密碼與確認密碼不一致");
+  //     return;
+  //   }
+
+  //   setErrorMessage("");
+  //   console.log("註冊成功", { username, email, password });
+  //   // 在這裡送出資料到後端 API（如需）
+  // };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
     if (password !== confirmPassword) {
       setErrorMessage("密碼與確認密碼不一致");
       return;
     }
-
+  
     setErrorMessage("");
-    console.log("註冊成功", { username, email, password });
-    // 在這裡送出資料到後端 API（如需）
+  
+    try {
+      const res = await fetch("http://localhost:8001/api/register/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password, email }),
+      });
+  
+      const data = await res.json();
+  
+      if (res.ok) {
+        alert("✅ 註冊成功，請前往登入！");
+      } else {
+        setErrorMessage(data.error || "註冊失敗");
+      }
+    } catch (err) {
+      console.error("註冊時發生錯誤", err);
+      setErrorMessage("伺服器錯誤，請稍後再試");
+    }
   };
+  
 
   return (
     <div className="w-screen h-screen flex items-center justify-center bg-gradient-to-r from-[#4A90E2] to-[#50E3C2]">
