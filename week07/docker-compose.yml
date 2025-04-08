@@ -7,4 +7,4 @@ services:
       - "8000:8000"
     volumes:
       - .:/app
-    container_name: myblog_django
+    container_name: web_django
