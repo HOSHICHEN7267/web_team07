@@ -1,7 +1,7 @@
 from django.db import models
 
 class Product(models.Model):
-    pid = models.AutoField(primary_key=True)
+    # pid = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     price = models.IntegerField()
     img = models.CharField(max_length=255)  # 存放圖片路徑 "/img/items/xxx.jpg"
