@@ -50,22 +50,44 @@ HW_Report/
 
 ## 當週上課的主題練習
 
+### React
+
+- Set directory path
+  ```sh
+  cd HW_Report/my-shopping-platform
+  ```
+
+- Command
+  ```sh
+  npm run dev
+  ```
+
+- Click the given link
+  ![image](../HW_Materials/week7/image.png) </br>
+
 ### Docker
 
 **Docker Image Pull 連結**
-https://hub.docker.com/repository/docker/poyucheese/web_team07/general
+- ```https://hub.docker.com/repository/docker/poyucheese/web_team07/general```
 
 **Docker啟動方式說明**
 
-- How to run
+- Set directory path
   ```sh
-  docker-compose up --build
+  cd HW_Report
   ```
 
-- Image in docker hub
+- Pull from docker hub
   ```sh
-  poyucheese/web_team07:latest
+  docker pull poyucheese/web_team07:latest
   ```
+
+- How to run
+  ```sh
+  docker run   --platform linux/arm64   -v $(pwd)/backend:/app/backend   -p 8001:8000   poyucheese/web_team07:latest   python /app/backend/manage.py runserver 0.0.0.0:8000
+  ```
+
+- 開啟瀏覽器輸入 127.0.0.1:8001/admin, Username 和 Password 分別輸入 admin 和 123456, 即可進入我們的 Django 資料庫後端
 
 
 ### Django
@@ -171,8 +193,8 @@ https://hub.docker.com/repository/docker/poyucheese/web_team07/general
 
 
 ## 組員分工情況
-- 陳星佑 25% Login/Register backend construction
-- 高永杰 25% Product database construction
+- 陳星佑 25% Login/Register backend construction, write readme file
+- 高永杰 25% Product database construction, write readme file
 - 渠景量 25% Django/React integration 
 - 林柏佑 25% Docker image construction
 

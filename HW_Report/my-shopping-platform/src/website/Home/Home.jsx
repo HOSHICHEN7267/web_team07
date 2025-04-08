@@ -20,7 +20,7 @@ export default function Home() {
   const { addToCart } = useContext(CartContext); 
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/products/")
+    fetch("http://localhost:8001/api/products/")
       .then((res) => res.json())
       .then((data) => setProducts(data))
       .catch((err) => console.error("載入商品失敗", err));
