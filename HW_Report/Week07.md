@@ -52,6 +52,20 @@ HW_Report/
 
 ### Docker
 
+**Docker Image Pull 連結**
+https://hub.docker.com/repository/docker/poyucheese/web_team07/general
+
+**Docker啟動方式說明**
+
+- How to run
+  ```sh
+  docker-compose up --build
+  ```
+
+- Image in docker hub
+  ```sh
+  poyucheese/web_team07:latest
+  ```
 
 
 ### Django
