@@ -2,15 +2,30 @@ import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
 import HeaderSlider from "../../components/HeadSlider";
 import Navbar from "../../components/Navbar";
+import { useEffect, useState, useContext} from "react"; 
+import { CartContext } from "../CartContext";
 
+
+
+
+// export default function Home() {
+//   const products = [
+//     { id: 1, name: "吉伊卡哇", price: 99, img: "/img/items/chiikawa.jpg" },
+//     { id: 2, name: "小八", price: 999, img: "/img/items/hachiware.jpg" },
+//     { id: 3, name: "烏薩奇", price: 9999, img: "/img/items/usagi.jpg" },
+//     { id: 4, name: "獅薩", price: 999, img: "/img/items/sisa.jpg" },
+//   ];
 export default function Home() {
-  const products = [
-    { id: 1, name: "吉伊卡哇", price: 99, img: "/img/items/chiikawa.jpg" },
-    { id: 2, name: "小八", price: 999, img: "/img/items/hachiware.jpg" },
-    { id: 3, name: "烏薩奇", price: 9999, img: "/img/items/usagi.jpg" },
-    { id: 4, name: "獅薩", price: 999, img: "/img/items/sisa.jpg" },
-  ];
+  const [products, setProducts] = useState([]); // 改用 state 來裝後端資料
+  const { addToCart } = useContext(CartContext); 
 
+  useEffect(() => {
+    fetch("http://localhost:8001/api/products/")
+      .then((res) => res.json())
+      .then((data) => setProducts(data))
+      .catch((err) => console.error("載入商品失敗", err));
+  }, []);
+  
   return (
     <>
       <div className="inset-0 bg-gray-100 box-border overflow-x-hidden">
@@ -31,7 +46,7 @@ export default function Home() {
                 />
                 <h3 className="mt-2 text-lg sm:text-xl font-semibold text-black">{product.name}</h3>
                 <p className="text-gray-600">${product.price}</p>
-                <button className="mt-2 w-full sm:w-auto bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">加入購物車</button>
+                <button className="mt-2 w-full sm:w-auto bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600" onClick={() => addToCart(product)} >加入購物車</button>
               </div>
             ))}
           </div>
