@@ -50,27 +50,15 @@ HW_Report/
 
 ## 當週上課的主題練習
 
-### React
-
-- Set directory path
-  ```sh
-  cd HW_Report/my-shopping-platform
-  ```
-
-- Command
-  ```sh
-  npm run dev
-  ```
-
-- Click the given link
-  ![image](../HW_Materials/week7/image.png) </br>
-
 ### Docker
 
 **Docker Image Pull 連結**
 - ```https://hub.docker.com/repository/docker/poyucheese/web_team07/general```
 
 **Docker啟動方式說明**
+
+- Open Docker Desktop App (No need to sign in)
+  ![Docker_Desktop](../HW_Materials/week7/Docker_Desktop.png) </br>
 
 - Set directory path
   ```sh
@@ -88,6 +76,22 @@ HW_Report/
   ```
 
 - 開啟瀏覽器輸入 127.0.0.1:8001/admin, Username 和 Password 分別輸入 admin 和 123456, 即可進入我們的 Django 資料庫後端
+
+
+### React
+
+- Set directory path
+  ```sh
+  cd HW_Report/my-shopping-platform
+  ```
+
+- Command
+  ```sh
+  npm run dev
+  ```
+
+- Click the given link
+  ![image](../HW_Materials/week7/image.png) </br>
 
 
 ### Django
