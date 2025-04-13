@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -7,6 +7,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   // const handleSubmit = (e) => {
   //   e.preventDefault();
@@ -42,6 +43,7 @@ export default function Register() {
   
       if (res.ok) {
         alert("✅ 註冊成功，請前往登入！");
+        navigate("/login"); // 登入成功導回首頁
       } else {
         setErrorMessage(data.error || "註冊失敗");
       }

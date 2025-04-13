@@ -31,3 +31,15 @@ def register_user(request):
         UserProfile.objects.create(user=user)
 
     return Response({'message': '註冊成功'})
+
+
+@api_view(['POST'])
+def become_seller(request):
+
+    user = request.user
+    profile = user.userprofile  # ✅ 從 User 拿到對應的 UserProfile
+
+    profile.isSeller = True
+    profile.save()
+
+    return Response({"message": f"{user.username} 現在是賣家了！"})

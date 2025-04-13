@@ -10,4 +10,5 @@ urlpatterns = [
     # path('login/', views.login),
     path('products/', views.get_products),
     path('register/', views.register_user),  # ✅ 註冊用 API
+    path('become-seller/', views.become_seller),
 ]
