@@ -18,6 +18,7 @@ import { CartContext } from "../CartContext";
 export default function Home() {
   const [products, setProducts] = useState([]); // 改用 state 來裝後端資料
   const { addToCart } = useContext(CartContext); 
+  const [ajaxMessage, setAjaxMessage] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:8001/api/products/")
@@ -26,12 +27,35 @@ export default function Home() {
       .catch((err) => console.error("載入商品失敗", err));
   }, []);
   
+  const testAjax = async () => {
+    try {
+      const res = await fetch("http://localhost:8001/api/ajax-test/");
+      const data = await res.json();
+      setAjaxMessage(data.message);
+    } catch (err) {
+      setAjaxMessage("fail on testAjax");
+      console.error(err);
+    }
+  };
+
   return (
     <>
       <div className="inset-0 bg-gray-100 box-border overflow-x-hidden">
         <Navbar />
 
         <HeaderSlider />
+
+        {/* AJAX 測試區塊 */}
+        <section className="container mx-auto px-4 py-4">
+          <button
+            onClick={testAjax}
+            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+            test AJAX
+          </button>
+          {ajaxMessage && (
+            <p className="mt-2 text-green-700 font-semibold">{ajaxMessage}</p>
+          )}
+        </section>
 
         {/* 商品區域 */}
         <section className="container mx-auto px-4 py-8">

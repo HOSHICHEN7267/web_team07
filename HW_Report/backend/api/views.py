@@ -12,6 +12,9 @@ def get_products(request):
     serializer = ProductSerializer(products, many=True)
     return Response(serializer.data)
 
+@api_view(['GET'])
+def ajax_test_view(request):
+    return Response({'message': 'response from AJAX'})
 
 @api_view(['POST'])
 def register_user(request):
