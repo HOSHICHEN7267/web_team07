@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'api',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +136,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 CORS_ALLOW_ALL_ORIGINS = True  # 為了讓 React 前端能連接到 Django 後端 API
+
+ASGI_APPLICATION = "my_backend.asgi.application"

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
 import HeaderSlider from "../../components/HeadSlider";
 import Navbar from "../../components/Navbar";
-import { useEffect, useState, useContext} from "react"; 
+import { useEffect, useState, useContext, useRef} from "react"; 
 import { CartContext } from "../CartContext";
 
 
@@ -19,6 +19,31 @@ export default function Home() {
   const [products, setProducts] = useState([]); // 改用 state 來裝後端資料
   const { addToCart } = useContext(CartContext); 
   const [ajaxMessage, setAjaxMessage] = useState("");
+  const [wsMessage, setWsMessage] = useState("");
+  const socketRef = useRef(null);
+
+  useEffect(() => {
+    socketRef.current = new WebSocket('ws://localhost:8001/ws/chat/');
+
+    socketRef.current.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      setWsMessage(data.message);
+    };
+
+    socketRef.current.onerror = (err) => {
+      console.error("WebSocket error:", err);
+    };
+
+    return () => socketRef.current.close();
+  }, []);
+
+  const sendWebSocketMessage = () => {
+    if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
+      socketRef.current.send(JSON.stringify({ message: "message from frontend" }));
+    } else {
+      console.warn("WebSocket 尚未連線");
+    }
+  };
 
   useEffect(() => {
     fetch("http://localhost:8001/api/products/")
@@ -54,6 +79,18 @@ export default function Home() {
           </button>
           {ajaxMessage && (
             <p className="mt-2 text-green-700 font-semibold">{ajaxMessage}</p>
+          )}
+        </section>
+
+        {/* WebSocket 測試區塊 */}
+        <section className="container mx-auto px-4 py-4">
+          <button
+            onClick={sendWebSocketMessage}
+            className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">
+            test WebSocket
+          </button>
+          {wsMessage && (
+            <p className="mt-2 text-purple-700 font-semibold">{wsMessage}</p>
           )}
         </section>
 
