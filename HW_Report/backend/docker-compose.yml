@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  django:
+    build: .
+    ports:
+      - "8000:8000"
+      - "8001:8000"
+    volumes:
+      - .:/HW_Report/backend
+    depends_on:
+      - mysql
+    container_name: web_django
+    command: >
+        daphne -b 0.0.0.0 -p 8000 my_backend.asgi:application
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: hw_db
+      MYSQL_USER: hw_user
+      MYSQL_PASSWORD: hw_pass
+      MYSQL_ROOT_PASSWORD: root_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    container_name: hw_mysql
+
+volumes:
+  mysql_data:
