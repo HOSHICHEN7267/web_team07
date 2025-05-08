@@ -65,6 +65,20 @@ HW_Report/
   cd HW_Report
   ```
 
+- Clearing 8001 port (Update 0508)
+  - Check if 8001 port is occupied
+    ```sh
+    sudo netstat -tulpn | grep :8001
+    ```
+  - If occupied by docker, find its container ID
+    ```sh
+    docker ps
+    ``` 
+  - Stop that docker container by its ID
+    ```sh
+    docker stop <container_id>
+    ``` 
+
 - Pull from docker hub
   ```sh
   docker pull poyucheese/web_team07:latest

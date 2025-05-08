@@ -19,6 +19,20 @@
   cd HW_Report/backend
   ```
 
+- Clearing 8001 port (Update 0508)
+  - Check if 8001 port is occupied
+    ```sh
+    sudo netstat -tulpn | grep :8001
+    ```
+  - If occupied by docker, find its container ID
+    ```sh
+    docker ps
+    ``` 
+  - Stop that docker container by its ID
+    ```sh
+    docker stop <container_id>
+    ``` 
+
 - Pull from docker hub and run docker
   ```sh
   docker compose up -d
