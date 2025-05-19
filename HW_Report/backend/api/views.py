@@ -5,6 +5,7 @@ from .serializers import ProductSerializer
 from django.contrib.auth.models import User
 from rest_framework import status
 from .models import UserProfile
+from .models import EventLog
 
 @api_view(['GET'])
 def get_products(request):
@@ -56,3 +57,21 @@ def become_seller(request):
     profile.save()
 
     return Response({"message": f"{user.username} 現在是賣家了！"})
+
+@api_view(['POST'])
+def track_event(request):
+    try:
+        event_type = request.data.get("event_type")
+        product_id = request.data.get("product_id")
+        username = request.data.get("username", "anonymous")
+
+        # 存入資料庫
+        EventLog.objects.create(
+            username=username,
+            event_type=event_type,
+            product=Product.objects.filter(id=product_id).first()
+        )
+
+        return Response({"status": "ok"})
+    except Exception as e:
+        return Response({"status": "error", "message": str(e)}, status=400)

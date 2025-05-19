@@ -23,6 +23,23 @@ export default function Home() {
   const socketRef = useRef(null);
   const [addedProductId, setAddedProductId] = useState(null); // 目前顯示成功訊息的商品 ID
 
+  const trackEvent = async (eventType, product) => {
+    try {
+      await fetch("http://localhost:8001/api/track-event/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          event_type: eventType,
+          product_id: product.id,
+          username: localStorage.getItem("username") || "anonymous", // 可從登入流程設定
+        }),
+      });
+    } catch (err) {
+      console.error("事件追蹤失敗", err);
+    }
+  };
 
   useEffect(() => {
     socketRef.current = new WebSocket('ws://localhost:8001/ws/chat/');
@@ -67,6 +84,7 @@ export default function Home() {
 
   const handleAddToCart = async (product) => {
     addToCart(product);
+    await trackEvent("add_to_cart", product);
   
     // AJAX 請求
     try {
@@ -139,6 +157,7 @@ export default function Home() {
                   src={product.img}
                   alt="商品"
                   className="w-full h-auto object-cover rounded-md max-w-full"
+                  onClick={() => trackEvent("view_product", product)}
                 />
                 <h3 className="mt-2 text-lg sm:text-xl font-semibold text-black">{product.name}</h3>
                 <p className="text-gray-600">${product.price}</p>
