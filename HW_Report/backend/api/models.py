@@ -9,10 +9,11 @@ class UserProfile(models.Model):
         return f"{self.user.username}'s profile"
 
 class Product(models.Model):
-    # pid = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     price = models.IntegerField()
-    img = models.CharField(max_length=255)  # 存放圖片路徑 "/img/items/xxx.jpg"
+    img = models.CharField(max_length=255)  # 存放靜態圖片路徑 "/img/items/xxx.jpg"
+    description = models.TextField(default="", blank=True)  # ✅ 商品說明
+    stock = models.IntegerField(default=0)  # ✅ 商品庫存
 
     def __str__(self):
         return self.name
