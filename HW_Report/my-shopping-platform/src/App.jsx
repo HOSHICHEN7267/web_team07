@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./website/Home/Home";
 import Product from "./website/Home/Product";
+import ProductDetail from "./website/Home/ProductDetail"; {/* 0519: Add product detail page */}
 import Cart from "./website/Home/Cart";
 import Login from "./website/Login";
 import Register from "./website/Register";
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product" element={<Product />} />
+          <Route path="/product/:id" element={<ProductDetail />} /> {/* 0519: Add product detail page */}
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

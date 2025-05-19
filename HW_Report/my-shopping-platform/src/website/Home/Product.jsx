@@ -28,25 +28,30 @@ export default function Product() {
     <>
       <div className="inset-0 bg-gray-100">
         <Navbar />
-        {/* 商品區域 */}
         <section className="container mx-auto px-4 py-8">
           <h2 className="text-2xl font-bold text-gray-700">熱門商品</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
             {products.map((product) => (
               <div key={product.id} className="bg-white p-4 shadow-md rounded-lg">
-                <img
-                  src={product.img}
-                  alt="商品"
-                  className="w-full h-45 object-cover rounded-md"
-                />
-                <h3 className="mt-2 text-lg font-semibold text-black">{product.name}</h3>
-                <p className="text-gray-600">${product.price}</p>
-                <button className="mt-2 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600" onClick={() => addToCart(product)} >加入購物車</button>
+                <Link to={`/product/${product.id}`} className="block hover:opacity-90">
+                  <img
+                    src={product.img}
+                    alt={product.name}
+                    className="w-full h-45 object-cover rounded-md"
+                  />
+                  <h3 className="mt-2 text-lg font-semibold text-black">{product.name}</h3>
+                  <p className="text-gray-600">${product.price}</p>
+                </Link>
+                <button
+                  className="mt-2 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
+                  onClick={() => addToCart(product)}
+                >
+                  加入購物車
+                </button>
               </div>
             ))}
           </div>
         </section>
-
       </div>
       <Footer />
     </>

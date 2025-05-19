@@ -13,6 +13,16 @@ def get_products(request):
     return Response(serializer.data)
 
 @api_view(['GET'])
+def get_product_detail(request, id):    # 0519: Add product detail view
+    try:
+        product = Product.objects.get(id=id)
+    except Product.DoesNotExist:
+        return Response({'error': '找不到商品'}, status=status.HTTP_404_NOT_FOUND)
+
+    serializer = ProductSerializer(product)
+    return Response(serializer.data)
+
+@api_view(['GET'])
 def ajax_test_view(request):
     return Response({'message': 'response from AJAX'})
 
