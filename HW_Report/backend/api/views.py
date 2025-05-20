@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from rest_framework import status
 from .models import UserProfile
 from .models import EventLog
+from .serializers import RegisterSerializer
+
 
 @api_view(['GET'])
 def get_products(request):
@@ -29,22 +31,17 @@ def ajax_test_view(request):
 
 @api_view(['POST'])
 def register_user(request):
-    username = request.data.get('username')
-    password = request.data.get('password')
-    email = request.data.get('email')  # 新增接收 email
+    serializer = RegisterSerializer(data=request.data)
+    if serializer.is_valid():
+        user = serializer.save()
 
-    print(f"Received data: {request.data}")
+        # 確保 Profile 有建立
+        if not hasattr(user, 'userprofile'):
+            UserProfile.objects.create(user=user)
 
-    if User.objects.filter(username=username).exists():
-        return Response({'error': '使用者已存在'}, status=400)
-
-    user = User.objects.create_user(username=username, password=password, email=email)
-
-    # 確保 Profile 已經有建立（signals 應該會做，但保險起見）
-    if not hasattr(user, 'userprofile'):
-        UserProfile.objects.create(user=user)
-
-    return Response({'message': '註冊成功'})
+        return Response({'message': '註冊成功'}, status=status.HTTP_201_CREATED)
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['POST'])
