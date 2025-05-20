@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className="bg-white">
       <div className="flex flex-col md:flex-row items-start justify-center px-6 md:px-16 lg:px-32 gap-10 py-14 border-b border-gray-500/30 text-gray-500">
         
         {/* 第一個區塊：描述文本 */}
@@ -49,7 +49,7 @@ const Footer = () => {
       </div>
 
       {/* 底部版權文字 */}
-      <p className="py-4 text-center text-xs md:text-sm">
+      <p className="bg-white py-4 text-center text-xs md:text-sm">
         Copyright 2025 © GreatStack.dev All Right Reserved.
       </p>
     </footer>
