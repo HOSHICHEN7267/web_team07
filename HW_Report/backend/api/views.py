@@ -81,25 +81,32 @@ logger = logging.getLogger(__name__)  # 設定 log
 
 @api_view(['POST'])
 def chat_with_gemini(request):
-    api_key = os.environ.get("GOOGLE_API_KEY")
-    logger.info(f"✅ Gemini API Key: {api_key}")  # 確保印出
+    genai.configure(api_key=os.environ.get("GOOGLE_API_KEY"))
 
-    if not api_key:
-        return Response({"error": "GOOGLE_API_KEY not found"}, status=500)
+    user_message = request.data.get('message')
+    product_name = request.data.get('product_name', '')
+    product_description = request.data.get('product_description', '')
+
+    if not user_message:
+        return Response({"error": "缺少 message"}, status=status.HTTP_400_BAD_REQUEST)
+
+    # 👉 自動加上商品提示
+    prompt = f"""
+你是一位線上購物平台的智慧 AI 助手，請根據以下商品資訊，回答使用者的問題：
+
+商品名稱：{product_name}
+商品描述：{product_description}
+
+使用者提問：{user_message}
+"""
 
     try:
-        genai.configure(api_key=api_key)
-        user_message = request.data.get('message')
-
-        if not user_message:
-            return Response({"error": "缺少 message"}, status=400)
-
         model = genai.GenerativeModel("gemini-1.5-flash")
         chat = model.start_chat(history=[])
-        response = chat.send_message(user_message)
+        response = chat.send_message(prompt)
         reply = response.text.strip()
-        return Response({"reply": reply})
 
+        return Response({"reply": reply})
     except Exception as e:
-        logger.exception("❌ Gemini error:")
-        return Response({"error": str(e)}, status=500)
+        return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+

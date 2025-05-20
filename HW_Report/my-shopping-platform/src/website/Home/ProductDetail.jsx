@@ -39,21 +39,32 @@ export default function ProductDetail() {
       const response = await fetch("http://localhost:8001/api/chat/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: userInput }),
+        body: JSON.stringify({
+          message: userInput,
+          product_name: product.name,
+          product_description: product.description || "（無描述）",
+        }),
       });
 
       const data = await response.json();
       if (response.ok) {
         setChatMessages((prev) => [...prev, { from: "ai", text: data.reply }]);
       } else {
-        setChatMessages((prev) => [...prev, { from: "ai", text: "❌ 回覆失敗：" + (data.error || "未知錯誤") }]);
+        setChatMessages((prev) => [
+          ...prev,
+          { from: "ai", text: "❌ 回覆失敗：" + (data.error || "未知錯誤") },
+        ]);
       }
     } catch (error) {
-      setChatMessages((prev) => [...prev, { from: "ai", text: "❌ 發送錯誤：" + error.message }]);
+      setChatMessages((prev) => [
+        ...prev,
+        { from: "ai", text: "❌ 發送錯誤：" + error.message },
+      ]);
     } finally {
       setIsLoading(false);
     }
   };
+
 
   if (!product) return <p className="p-8 text-center">載入中...</p>;
 
@@ -90,7 +101,7 @@ export default function ProductDetail() {
               <div key={idx} className={`flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}>
                 <div
                   className={`text-sm p-2 rounded break-words max-w-[70%] w-fit ${
-                    msg.from === "user" ? "bg-blue-100 text-right" : "bg-gray-200 text-left"
+                    msg.from === "user" ? "bg-blue-100 text-left" : "bg-gray-200 text-left"
                   }`}
                 >
                   {msg.text}
