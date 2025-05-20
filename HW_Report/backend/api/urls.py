@@ -13,4 +13,5 @@ urlpatterns = [
     path('register/', views.register_user),  # ✅ 註冊用 API
     path('become-seller/', views.become_seller),
     path('ajax-test/', views.ajax_test_view),
+    path("track-event/", views.track_event),
 ]
