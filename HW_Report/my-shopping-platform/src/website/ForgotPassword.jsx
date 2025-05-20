@@ -12,9 +12,18 @@ export default function ForgotPassword() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email }),
     });
+    const data = await res.json();
 
-    if (res.ok) {
-      setMessage("📩 我們已寄出重設密碼連結，如有註冊此 Email 請查看信箱！");
+
+    if (res.ok && data.token) {
+      const link = `http://localhost:5173/reset-password?token=${data.token}&email=${encodeURIComponent(email)}`;
+      setMessage(
+        <>
+          📩 測試模式：已產生重設連結
+          <br />
+          <a href={link} className="text-blue-600 break-all" target="_blank" rel="noreferrer">{link}</a>
+        </>
+      );
     } else {
       setMessage("⚠️ 發送失敗，請確認信箱格式或稍後再試。");
     }
