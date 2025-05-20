@@ -7,6 +7,9 @@ from rest_framework import status
 from .models import UserProfile
 from .models import EventLog
 from .serializers import RegisterSerializer
+import os
+import google.generativeai as genai
+import logging
 
 
 @api_view(['GET'])
@@ -72,3 +75,41 @@ def track_event(request):
         return Response({"status": "ok"})
     except Exception as e:
         return Response({"status": "error", "message": str(e)}, status=400)
+    
+
+logger = logging.getLogger(__name__)  # 設定 log
+
+@api_view(['POST'])
+def chat_with_gemini(request):
+    genai.configure(api_key=os.environ.get("GOOGLE_API_KEY"))
+
+    user_message = request.data.get('message')
+    product_name = request.data.get('product_name', '')
+    product_description = request.data.get('product_description', '')
+    history = request.data.get('history', [])  # 🔁 新增多輪上下文
+
+    if not user_message:
+        return Response({"error": "缺少 message"}, status=status.HTTP_400_BAD_REQUEST)
+
+    # 🧠 系統提示語：限制 AI 回答風格 + 資訊範圍
+    system_prompt = f"""
+你是一位熱情親切的購物助手 AI，只能根據「以下商品資訊」來回答使用者問題，請使用輕鬆活潑、簡潔實用的語氣，避免使用過度正式或冗長的說明。若問題與商品無關，請禮貌地婉拒。
+
+商品名稱：{product_name}
+商品描述：{product_description}
+"""
+
+    try:
+        model = genai.GenerativeModel("gemini-1.5-flash")
+        chat = model.start_chat(history=[{"role": "user", "parts": [system_prompt]}] + history)
+        response = chat.send_message(user_message)
+        reply = response.text.strip()
+
+        return Response({
+            "reply": reply
+        })
+    except Exception as e:
+        return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
