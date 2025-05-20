@@ -8,6 +8,8 @@ services:
     container_name: web_django
     command: >
       daphne -b 0.0.0.0 -p 8000 my_backend.asgi:application
+    volumes:
+      - .:/HW_Report/backend  # ← 掛載你本地的 backend 資料夾到容器路徑
 
   mysql:
     image: ryan881225/hw-mysql:latest
