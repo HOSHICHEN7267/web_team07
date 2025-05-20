@@ -12,7 +12,7 @@ export default function ProductDetail() {
   const [chatMessages, setChatMessages] = useState([]);
   const [userInput, setUserInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const messagesEndRef = useRef(null);
+  const messagesContainerRef = useRef(null);
 
   useEffect(() => {
     fetch(`http://localhost:8001/api/products/${id}/`)
@@ -22,7 +22,9 @@ export default function ProductDetail() {
   }, [id]);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+    }
   }, [chatMessages]);
 
   const handleSendMessage = async () => {
@@ -80,19 +82,26 @@ export default function ProductDetail() {
         <div className="w-full lg:w-1/3 bg-white rounded-lg shadow-md p-4 flex flex-col">
           <h2 className="text-xl font-semibold mb-4">AI 助手</h2>
 
-          <div className="flex-1 min-h-[300px] lg:h-[500px] bg-gray-50 border rounded p-3 overflow-y-auto space-y-3">
+          <div
+            ref={messagesContainerRef}
+            className="h-[300px] lg:h-[500px] bg-gray-50 border rounded p-3 overflow-y-auto space-y-3"
+          >
             {chatMessages.map((msg, idx) => (
-              <div
-                key={idx}
-                className={`text-sm p-2 rounded ${
-                  msg.from === "user" ? "bg-blue-100 self-end text-right" : "bg-gray-200 self-start"
-                }`}
-              >
-                {msg.text}
+              <div key={idx} className={`flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}>
+                <div
+                  className={`text-sm p-2 rounded break-words max-w-[70%] w-fit ${
+                    msg.from === "user" ? "bg-blue-100 text-right" : "bg-gray-200 text-left"
+                  }`}
+                >
+                  {msg.text}
+                </div>
               </div>
             ))}
-            {isLoading && <div className="text-sm text-gray-500">AI 回覆中...</div>}
-            <div ref={messagesEndRef} />
+            {isLoading && (
+              <div className="flex justify-start">
+                <div className="text-sm text-gray-500">AI 回覆中...</div>
+              </div>
+            )}
           </div>
 
           <div className="mt-3 flex gap-2">
