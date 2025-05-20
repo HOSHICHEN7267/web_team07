@@ -5,6 +5,8 @@ import ProductDetail from "./website/Home/ProductDetail"; {/* 0519: Add product 
 import Cart from "./website/Home/Cart";
 import Login from "./website/Login";
 import Register from "./website/Register";
+import ForgotPassword from "./website/ForgotPassword";
+import ResetPassword from "./website/ResetPassword";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Routes>
       </Router>
     </div>

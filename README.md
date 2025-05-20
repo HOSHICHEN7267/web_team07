@@ -17,13 +17,16 @@ docker pull ryan881225/backend-django:latest
 # 2️⃣ 啟動服務（第一次或 Dockerfile 改過時加 --build）
 docker-compose up --build
 
-# 3️⃣ 資料庫遷移（model 改動後才需要）
+# 3️⃣ 複製 data.json 進去 docker 容器
+docker cp data.json web_django:./data.json
+
+# 4️⃣ 資料庫遷移（model 改動後才需要）
 docker exec -it web_django python manage.py migrate
 
-# 4️⃣ 匯入初始資料（只有需要預設 admin、商品資料時才執行）
+# 5️⃣ 匯入初始資料（只有需要預設 admin、商品資料時才執行）
 docker exec -it web_django python manage.py loaddata data.json
 
-# 5️⃣ 收集靜態檔案（修改過 static 設定或 CSS 無法顯示時才需要）
+# 6️⃣ 收集靜態檔案（修改過 static 設定或 CSS 無法顯示時才需要）
 docker exec -it web_django python manage.py collectstatic --noinput
 ```
 

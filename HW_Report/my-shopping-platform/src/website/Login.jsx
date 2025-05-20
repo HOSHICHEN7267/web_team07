@@ -77,7 +77,7 @@ export default function Login() {
               />
               <span className="ml-2 text-sm text-gray-600">記住我</span>
             </label>
-            <Link to="/register" className="text-sm text-blue-500 hover:underline">忘記密碼？</Link>
+            <Link to="/forgot-password" className="text-sm text-blue-500 hover:underline">忘記密碼？</Link>
           </div>
 
           {errorMessage && (
