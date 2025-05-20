@@ -35,6 +35,12 @@ export default function ProductDetail() {
     setUserInput("");
     setIsLoading(true);
 
+    // ✅ 將 chatMessages 轉換為 Gemini 所需格式
+    const history = newMessages.map((msg) => ({
+      role: msg.from === "user" ? "user" : "model",
+      parts: [msg.text],
+    }));
+
     try {
       const response = await fetch("http://localhost:8001/api/chat/", {
         method: "POST",
@@ -43,6 +49,7 @@ export default function ProductDetail() {
           message: userInput,
           product_name: product.name,
           product_description: product.description || "（無描述）",
+          history: history,
         }),
       });
 
@@ -64,6 +71,7 @@ export default function ProductDetail() {
       setIsLoading(false);
     }
   };
+
 
 
   if (!product) return <p className="p-8 text-center">載入中...</p>;
