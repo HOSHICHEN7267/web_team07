@@ -10,6 +10,8 @@ services:
       daphne -b 0.0.0.0 -p 8000 my_backend.asgi:application
     volumes:
       - .:/HW_Report/backend  # ← 掛載你本地的 backend 資料夾到容器路徑
+    env_file:
+      - .env  # ← 載入環境變數檔案 (ex: GOOGLE_API_KEY)
 
   mysql:
     image: ryan881225/hw-mysql:latest

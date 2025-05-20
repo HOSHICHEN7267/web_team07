@@ -7,6 +7,9 @@ from rest_framework import status
 from .models import UserProfile
 from .models import EventLog
 from .serializers import RegisterSerializer
+import os
+import google.generativeai as genai
+import logging
 
 
 @api_view(['GET'])
@@ -72,3 +75,31 @@ def track_event(request):
         return Response({"status": "ok"})
     except Exception as e:
         return Response({"status": "error", "message": str(e)}, status=400)
+    
+
+logger = logging.getLogger(__name__)  # 設定 log
+
+@api_view(['POST'])
+def chat_with_gemini(request):
+    api_key = os.environ.get("GOOGLE_API_KEY")
+    logger.info(f"✅ Gemini API Key: {api_key}")  # 確保印出
+
+    if not api_key:
+        return Response({"error": "GOOGLE_API_KEY not found"}, status=500)
+
+    try:
+        genai.configure(api_key=api_key)
+        user_message = request.data.get('message')
+
+        if not user_message:
+            return Response({"error": "缺少 message"}, status=400)
+
+        model = genai.GenerativeModel("gemini-1.5-flash")
+        chat = model.start_chat(history=[])
+        response = chat.send_message(user_message)
+        reply = response.text.strip()
+        return Response({"reply": reply})
+
+    except Exception as e:
+        logger.exception("❌ Gemini error:")
+        return Response({"error": str(e)}, status=500)
